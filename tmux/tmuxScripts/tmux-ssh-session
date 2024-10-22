@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+chose=$(cat ~/tmuxScripts/ssh/list.txt| fzf)
+selected=$(echo $chose | awk '{print $1}')
+name=$(echo $chose | awk '{print $3}')
+selected_name=$(basename "$name" | tr . _)
+#
+# If nothing is select from FZF pop up, exit
+if [[ -z $selected ]]; then
+    exit 0
+fi
+    tmux new-session -ds $selected_name -c $selected ssh -Y $selected
+    tmux switch-client -t $selected_name

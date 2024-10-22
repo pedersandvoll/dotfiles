@@ -1,0 +1,13 @@
+#!/bin/bash
+
+selected_file=$(find "$(pwd)" -name 'docker-compose.yml' | fzf --preview 'cat {}')
+
+if [ -n "$selected_file" ]; then
+    dir=$(dirname "$selected_file")
+    abs_dir=$(realpath "$dir")
+    tmux_command="cd '$abs_dir' && docker compose up 2>&1"
+    new_window_id=$(tmux new-window -d "$tmux_command; tmux kill-window" | awk '{print $2}')
+    tmux display-message -d 3000 "Running: $selected_file"
+else
+    tmux display-message -d 3000 "No docker-compose.yml file selected"
+fi
