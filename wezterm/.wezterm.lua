@@ -1,17 +1,18 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.color_scheme = 'Gruber (base16)'
+-- config.color_scheme = 'Gruber (base16)'
+config.color_scheme = 'rose-pine'
 config.enable_tab_bar = false
 config.text_background_opacity = 1.0
 config.term = "xterm-256color"
 config.window_background_image_hsb = {
     brightness = 0.1,
 }
--- config.colors = {
---     background = '#191724'
--- }
--- config.window_background_opacity = 0.40
+config.colors = {
+    background = 'black'
+}
+-- config.window_background_opacity = 0.80
 -- config.window_background_opacity = 0
 
 -- config.window_background_image = "./Pictures/wallpapers/wezterm/nope.png"
