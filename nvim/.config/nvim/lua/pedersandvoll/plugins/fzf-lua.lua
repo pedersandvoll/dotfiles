@@ -3,10 +3,10 @@ return {
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-        require("fzf-lua").setup({})
+        require("fzf-lua").setup({ 'telescope' })
         vim.keymap.set("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", { desc = "Fuzzy find files in cwd" })
-        vim.keymap.set("n", "<leader>fr", "<cmd>lua require('fzf-lua').oldfiles()<CR>",
-            { desc = "Fuzzy find recent files" })
+        -- vim.keymap.set("n", "<leader>fr", "<cmd>lua require('fzf-lua').oldfiles()<CR>",
+        --     { desc = "Fuzzy find recent files" })
         vim.keymap.set("n", "<leader>fs", "<cmd>lua require('fzf-lua').live_grep()<CR>", { desc = "Find string in cwd" })
         vim.keymap.set("n", "<leader>fc", "<cmd>lua require('fzf-lua').grep_cword()<CR>",
             { desc = "Find string under cursor in cwd" })

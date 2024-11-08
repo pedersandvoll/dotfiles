@@ -6,6 +6,7 @@ return {
             require("mini.move").setup()
             require("mini.diff").setup()
             require("mini.visits").setup()
+            require("mini.ai").setup()
         end,
     },
     {

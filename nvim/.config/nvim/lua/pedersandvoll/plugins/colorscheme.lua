@@ -2,11 +2,6 @@ return {
     {
         "ellisonleao/gruvbox.nvim",
         priority = 1000,
-        config = function()
-            -- vim.cmd.colorscheme("gruvbox")
-            vim.api.nvim_set_hl(0, "Normal", { bg = "#222222" })
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#222222" })
-        end
     },
     {
         "blazkowolf/gruber-darker.nvim",
@@ -15,16 +10,31 @@ return {
     {
         "rose-pine/neovim",
         priority = 1000,
+        config = function()
+            require("rose-pine").setup({
+                -- disable_background = true,
+                -- disable_float_background = true,
+                palette = {
+                    main = {
+                        base = "#000000"
+                    }
+                },
+                highlight_groups = {
+                    StatusLine = { fg = "iris", bg = "iris", blend = 10 },
+                    StatusLineNC = { fg = "subtle", bg = "surface" },
+                },
+            })
+        end
     },
     {
-        "slugbyte/lackluster.nvim",
+        "aliqyan-21/darkvoid.nvim",
         priority = 1000,
     },
     {
         "zaldih/themery.nvim",
         config = function()
             require("themery").setup({
-                themes = { "gruvbox", "rose-pine", "gruber-darker", "lackluster" },
+                themes = { "gruvbox", "rose-pine", "gruber-darker", "darkvoid" },
                 livePreview = true,
             })
         end

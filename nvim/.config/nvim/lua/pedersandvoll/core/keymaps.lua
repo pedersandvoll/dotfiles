@@ -2,7 +2,6 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
--- keymap.set("i", "ii", "<ESC>", { desc = "Exit insert mode with ii" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- increment/decrement numbers
@@ -41,11 +40,15 @@ keymap.set("n", "<M-O>", "O<Esc>=", { desc = "Make new line over" })  -- make sp
 
 keymap.set("n", "Q", "<cmd>HopWord<CR>", { desc = "Go to any word in the buffer" })
 
+keymap.set("n", "<leader>rr", "<cmd>:Rest run<CR>", { desc = "Open YankBank" })
+
 keymap.set("n", "*", 'yiw:let @/=@"<CR>:set hls<CR>zz')
 
 keymap.set("n", "<leader>mh", ":lua MiniVisits.select_path()<CR>", { desc = "Open history menu" })
 
 keymap.set("n", "<leader>tt", ":TransparentToggle<CR>", { desc = "Open history menu" })
+
+keymap.set("n", "<leader>fr", [["zyiw:%s/<C-r>z//g<left><left>]], { desc = "Find and replace" })
 
 keymap.set("n", "gr", function()
     local win = vim.api.nvim_get_current_win()

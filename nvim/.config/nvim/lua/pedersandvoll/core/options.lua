@@ -1,6 +1,6 @@
 vim.g.loaded_matchparen = 1
 vim.o.termguicolors = true
-vim.opt.winbar = '%=%m %f'
+vim.opt.winbar = ''
 local opt = vim.opt
 vim.o.completeopt = "menuone,noselect"
 
@@ -112,6 +112,9 @@ vim.o.signcolumn = "no"
 --         end, 100) -- Delay for 100 milliseconds
 --     end
 -- })
+
+vim.opt.laststatus = 2 -- Or 3 for global statusline
+vim.opt.statusline = " %f %m %= %l:%c ♥ "
 
 opt.conceallevel = 1
 
