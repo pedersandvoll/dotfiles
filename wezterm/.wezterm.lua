@@ -18,6 +18,7 @@ config.colors = {
 -- config.window_background_image = "./Pictures/wallpapers/wezterm/nope.png"
 -- config.window_background_image = "./Pictures/wallpapers/wezterm/totoro.jpeg"
 
+config.warn_about_missing_glyphs = false
 
 -- Key bindings for Ctrl+Tab and Ctrl+Shift+Tab to navigate Tmux windows
 config.keys = {
