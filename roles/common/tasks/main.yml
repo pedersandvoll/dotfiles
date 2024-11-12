@@ -1,7 +1,0 @@
----
-- name: Include package installation tasks
-  ansible.builtin.include_tasks: packages.yml
-  when: install_packages | bool
-
-- name: Include stow tasks
-  ansible.builtin.include_tasks: stow.yml
