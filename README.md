@@ -32,7 +32,7 @@ Note: Some dependencies might not be available in the default repositories for U
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
+git clone https://github.com/pedersandvoll/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
