@@ -58,7 +58,7 @@ ansible-playbook playbook.yml
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
+git clone https://github.com/pedersandvoll/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
