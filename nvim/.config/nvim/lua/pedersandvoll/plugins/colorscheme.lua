@@ -27,14 +27,14 @@ return {
         end
     },
     {
-        "aliqyan-21/darkvoid.nvim",
+        "nyoom-engineering/oxocarbon.nvim",
         priority = 1000,
     },
     {
         "zaldih/themery.nvim",
         config = function()
             require("themery").setup({
-                themes = { "gruvbox", "rose-pine", "gruber-darker", "darkvoid" },
+                themes = { "gruvbox", "rose-pine", "gruber-darker", "oxocarbon" },
                 livePreview = true,
             })
         end

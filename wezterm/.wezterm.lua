@@ -10,7 +10,10 @@ config.window_background_image_hsb = {
     brightness = 0.1,
 }
 config.colors = {
-    background = 'black'
+    background = 'black',
+    cursor_bg = "#ff85a2",
+    cursor_fg = "black",
+    cursor_border = "#ff85a2",
 }
 -- config.window_background_opacity = 0.80
 -- config.window_background_opacity = 0
