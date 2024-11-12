@@ -1,0 +1,31 @@
+---
+- name: Create backup directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.dotfiles_backup/{{ ansible_date_time.iso8601 }}"
+    state: directory
+    mode: '0755'
+
+- name: Backup existing configs
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/.dotfiles_backup/{{ ansible_date_time.iso8601 }}/"
+    remote_src: yes
+  with_items:
+    - { src: "{{ ansible_env.HOME }}/.config/hypr" }
+    - { src: "{{ ansible_env.HOME }}/.config/nvim" }
+    - { src: "{{ ansible_env.HOME }}/.config/tmux" }
+    - { src: "{{ ansible_env.HOME }}/.config/wezterm" }
+    - { src: "{{ ansible_env.HOME }}/.zshrc" }
+  when: item.src is exists
+  ignore_errors: yes
+
+- name: Stow dotfiles
+  ansible.builtin.command:
+    cmd: "stow -R {{ item }}"
+    chdir: "{{ playbook_dir }}"
+  loop:
+    - hypr
+    - nvim
+    - tmux
+    - wezterm
+    - zsh
