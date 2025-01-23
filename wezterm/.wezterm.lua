@@ -1,8 +1,8 @@
 local wezterm = require 'wezterm'
 local config = {}
 
--- config.color_scheme = 'Gruber (base16)'
-config.color_scheme = 'rose-pine'
+config.color_scheme = 'Gruber (base16)'
+-- config.color_scheme = 'rose-pine'
 config.enable_tab_bar = false
 config.text_background_opacity = 1.0
 config.term = "xterm-256color"
@@ -15,7 +15,7 @@ config.colors = {
     cursor_fg = "black",
     cursor_border = "#ff85a2",
 }
--- config.window_background_opacity = 0.80
+config.window_background_opacity = 0.60
 -- config.window_background_opacity = 0
 
 -- config.window_background_image = "./Pictures/wallpapers/wezterm/nope.png"
@@ -37,6 +37,12 @@ config.keys = {
         mods = 'CTRL|SHIFT',
         action = wezterm.action.SendString('\x1b[27;6;9~'),
     },
+    -- Alt+Enter (send items to qf list in neovim)
+    {
+        key = "Enter",
+        mods = "ALT",
+        action = wezterm.action.SendString('\x1b\r')
+    }
 }
 
 return config

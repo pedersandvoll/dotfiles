@@ -2,13 +2,32 @@ local M = {}
 
 -- Function to create colored diagnostic text
 local function colored_circle(severity)
-    -- Get the diagnostic color and statusline background color
-    local diag_fg = vim.fn.synIDattr(vim.fn.hlID("Diagnostic" .. severity), "fg#")
-    local status_bg = vim.fn.synIDattr(vim.fn.hlID("StatusLine"), "bg#")
+    -- Define default colors
+    local default_diag_fg = "#FFFFFF" -- Default foreground (white)
+    local default_status_bg = "#000000" -- Default background (black)
+
+    -- Try to retrieve the diagnostic foreground color
+    local diag_fg = vim.fn.synIDattr(vim.fn.hlID("Diagnostic" .. severity), "fg#") or default_diag_fg
+
+    -- Try to retrieve the statusline background color
+    local status_bg = vim.fn.synIDattr(vim.fn.hlID("StatusLine"), "bg#") or default_status_bg
+
+    -- Validate if colors are still nil or empty
+    if not diag_fg or diag_fg == "" then
+        diag_fg = default_diag_fg
+    end
+
+    if not status_bg or status_bg == "" then
+        status_bg = default_status_bg
+    end
 
     -- Create a temporary highlight group
     local hl_group = "DiagnosticCircle" .. severity
-    vim.cmd(string.format("highlight %s guifg=%s guibg=%s", hl_group, diag_fg, status_bg))
+
+    -- Protect against errors in the highlight command
+    pcall(function()
+        vim.cmd(string.format("highlight %s guifg=%s guibg=%s", hl_group, diag_fg, status_bg))
+    end)
 
     return string.format("%%#%s#⭘%%#StatusLine# ", hl_group)
 end

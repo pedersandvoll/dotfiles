@@ -55,6 +55,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf, silent = true }
+        local builtin = require('telescope.builtin')
 
         opts.desc = "Show full error"
         keymap.set("n", "sfe", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
@@ -67,7 +68,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
         opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+        keymap.set("n", "gd", builtin.lsp_definitions, opts)
+        -- keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
         opts.desc = "Show LSP implementations"
         keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations

@@ -100,8 +100,8 @@ vim.opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:mi
 
 vim.o.signcolumn = "no"
 
-vim.opt.laststatus = 2 -- Or 3 for global statusline
-vim.opt.statusline = [[ %f %m %{%v:lua.require'pedersandvoll.core.utils'.diagnostics()%} %= %l:%c ♥ ]]
+-- vim.opt.laststatus = 2 -- Or 3 for global statusline
+-- vim.opt.statusline = [[ %f %m %{%v:lua.require'pedersandvoll.core.utils'.diagnostics()%} %= %l:%c ♥ ]]
 
 opt.conceallevel = 1
 
