@@ -2,7 +2,7 @@ require("config.options")
 require("config.deps")
 require("config.keymaps")
 
-vim.lsp.enable({ "luals", "gopls" })
+vim.lsp.enable({ "luals", "gopls", "tsls" })
 
 -- vim.api.nvim_create_autocmd("LspAttach", {
 --     callback = function(ev)
