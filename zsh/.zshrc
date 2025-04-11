@@ -1,6 +1,7 @@
 source ~/.zsh_secrets
 
-if [ "$TMUX" = "" ]; then tmux attach; fi
+[ -n "$WEZTERM_PANE" ] && export NVIM_LISTEN_ADDRESS="/tmp/nvim$WEZTERM_PANE"
+# if [ "$TMUX" = "" ]; then tmux attach; fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -54,6 +55,8 @@ alias scd='cd $(fzf --type d --hidden --exclude .git --exclude node_module --exc
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH=$PATH:/home/pedersandvoll/.spicetify
+
+export PATH=$PATH:/usr/local/bin/nvim
 
 # golang
 export PATH=$PATH:/usr/local/go/bin
