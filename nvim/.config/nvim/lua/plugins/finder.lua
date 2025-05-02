@@ -1,5 +1,5 @@
 local map = require("utils").map
-local later = MiniDeps.later
+local add, later, now = MiniDeps.add, MiniDeps.later, MiniDeps.now
 
 -----------------------------------------------------------
 -- Fuzzy finder
@@ -25,6 +25,7 @@ later(function()
             config = win_config
         }
     })
+    require('mini.extra').setup()
 
     vim.ui.select = MiniPick.ui_select
     local show_with_icons = function(buf_id, items, query)
@@ -63,5 +64,43 @@ end)
 -----------------------------------------------------------
 later(function()
     require('mini.files').setup()
-    map('n', '<C-n>', MiniFiles.open, 'Open file picker')
+    map('n', '<C-n>', function()
+        local buf_name = vim.api.nvim_buf_get_name(0)
+        local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
+        MiniFiles.open(path)
+        MiniFiles.reveal_cwd()
+    end, 'Open file picker')
+end)
+
+-----------------------------------------------------------
+-- Visits
+-----------------------------------------------------------
+later(function()
+    require('mini.visits').setup()
+    map('n', '<leader>mh', '<cmd>lua MiniVisits.select_path()<cr>')
+end)
+
+-----------------------------------------------------------
+-- Harpoon
+-----------------------------------------------------------
+later(function()
+    add({
+        source = 'ThePrimeagen/harpoon',
+        checkout = 'harpoon2',
+        depends = {
+            'nvim-lua/plenary.nvim'
+        },
+    })
+
+    local harpoon = require("harpoon")
+
+    harpoon:setup()
+
+    map("n", "<leader>a", function() harpoon:list():add() end, "Add file to harpoon list")
+    map("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, "Toggle harpoon list")
+
+    map("n", "<leader>hq", function() harpoon:list():select(1) end, "Jump to file 1 of harpoon list")
+    map("n", "<leader>hw", function() harpoon:list():select(2) end, "Jump to file 2 of harpoon list")
+    map("n", "<leader>he", function() harpoon:list():select(3) end, "Jump to file 3 of harpoon list")
+    map("n", "<leader>hr", function() harpoon:list():select(4) end, "Jump to file 4 of harpoon list")
 end)

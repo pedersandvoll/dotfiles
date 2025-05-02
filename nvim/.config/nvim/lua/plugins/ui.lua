@@ -1,4 +1,4 @@
-local now, later = MiniDeps.now, MiniDeps.later
+local now, later, add = MiniDeps.now, MiniDeps.later, MiniDeps.add
 
 -----------------------------------------------------------
 -- Icons
@@ -59,4 +59,17 @@ end)
 -----------------------------------------------------------
 later(function()
     require('mini.cursorword').setup()
+end)
+
+-----------------------------------------------------------
+-- Typr
+-----------------------------------------------------------
+later(function()
+    add({
+        source = "nvzone/typr",
+        depends = {
+            "nvzone/volt"
+        }
+    })
+    require("typr").setup()
 end)

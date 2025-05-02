@@ -37,10 +37,23 @@ opt.termguicolors = true  -- Enable 24 bit RGB colors
 opt.laststatus = 3        -- Set global status line
 opt.scrolloff = 10        -- Always show 10 lines below cursor
 
-local sign_define = vim.fn.sign_define
-sign_define("DiagnosticSignError", { numhl = "DiagnosticSignError" })
-sign_define("DiagnosticSignWarn", { numhl = "DiagnosticSignWarn" })
-sign_define("DiagnosticSignInfo", { numhl = "DiagnosticSignInfo" })
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
+        },
+        numhl = {
+            [vim.diagnostic.severity.WARN] = 'WarningMsg',
+            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+            [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
+            [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+
+        },
+    },
+})
 
 -----------------------------------------------------------
 -- Tabs, indent

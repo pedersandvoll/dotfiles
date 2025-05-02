@@ -1,8 +1,17 @@
 return {
-    cmddd = { "typescript-language-server", "--stdio" },
+    cmd = { "typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
     init_options = {
         hostInfo = "neovim",
-    }
+        preferences = {
+            includeCompletionsForModuleExports = true,
+            includeCompletionsWithSnippetText = true,
+        },
+    },
+    settings = {
+        typescript = {},
+        javascript = {},
+    },
+    capabilities = {},
 }

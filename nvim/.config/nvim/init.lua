@@ -2,7 +2,7 @@ require("config.options")
 require("config.deps")
 require("config.keymaps")
 
-vim.lsp.enable({ "luals", "gopls", "tsls" })
+vim.lsp.enable({ "luals", "gopls", "tsls", "eslint", "efm" })
 
 -- vim.api.nvim_create_autocmd("LspAttach", {
 --     callback = function(ev)
@@ -19,6 +19,13 @@ vim.lsp.enable({ "luals", "gopls", "tsls" })
 --     vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { buffer = true, desc = "Format with LSP" })
 --   end,
 -- })
+--
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
+--     callback = function()
+--         vim.lsp.buf.format()
+--     end,
+-- })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "lua", "go" },
@@ -27,6 +34,17 @@ vim.api.nvim_create_autocmd("FileType", {
             buffer = vim.api.nvim_get_current_buf(),
             callback = function()
                 vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+            end,
+        })
+    end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json" },
+    callback = function()
+        vim.lsp.buf.format({
+            filter = function(client)
+                return client.name == "efm" -- Only efm-langserver formats
             end,
         })
     end,

@@ -19,10 +19,20 @@ end)
 -----------------------------------------------------------
 -- Git signs
 -----------------------------------------------------------
-later(function() 
+later(function()
     add({
         source = 'lewis6991/gitsigns.nvim'
     })
     require('gitsigns').setup()
     map('n', '<leader>gb', '<cmd>Gitsigns blame<cr>', 'Open git blame buffer')
+end)
+
+-----------------------------------------------------------
+-- Git conflict
+-----------------------------------------------------------
+later(function()
+    add({
+        source = 'akinsho/git-conflict.nvim'
+    })
+    require('git-conflict').setup()
 end)
