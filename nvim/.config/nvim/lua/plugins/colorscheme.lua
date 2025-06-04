@@ -10,9 +10,24 @@ now(function()
             transparency = true,
         }
     })
-    require('mini.colors').setup()
-    -- vim.cmd.colorscheme('wenvim-brown')
-    -- vim.cmd.colorscheme('wenvim-dark')
-    -- vim.cmd.colorscheme('wenvim-purple')
-    vim.cmd.colorscheme('rose-pine')
+
+    add({
+        source = "zootedb0t/citruszest.nvim",
+    })
+    require('citruszest').setup({
+        option = {
+            transparent = true,
+        }
+    })
+
+    add({
+        source = "folke/tokyonight.nvim",
+    })
+    require('tokyonight').setup({
+        transparent = true,
+    })
+
+    -- vim.cmd.colorscheme('rose-pine')
+    -- vim.cmd.colorscheme('citruszest')
+    vim.cmd.colorscheme('tokyonight')
 end)

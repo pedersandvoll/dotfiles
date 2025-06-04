@@ -73,3 +73,17 @@ later(function()
     })
     require("typr").setup()
 end)
+
+-----------------------------------------------------------
+-- Markdown
+-----------------------------------------------------------
+later(function()
+    add({
+        source = "MeanderingProgrammer/render-markdown.nvim",
+        depends = {
+            "treesitter/nvim-treesitter",
+            "echasnovski/mini.nvim"
+        }
+    })
+    require("render-markdown").setup()
+end)

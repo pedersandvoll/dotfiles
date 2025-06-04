@@ -11,6 +11,9 @@ map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Open code acti
 map('n', '<leader>fr', '<cmd>lua vim.lsp.buf.references()<cr>', 'Find references')
 map('n', 'sfe', '<cmd>lua vim.diagnostic.open_float()<cr>', 'Show full error message')
 
+map('n', '<leader>j', '<cmd>cnext<cr>', 'Jump to next in qf list')
+map('n', '<leader>k', '<cmd>cprevious<cr>', 'Jump to previos in qf list')
+
 local hover_opts = {
     border = "rounded",
     max_width = 120,
