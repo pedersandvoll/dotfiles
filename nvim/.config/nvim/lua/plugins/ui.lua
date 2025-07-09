@@ -19,6 +19,9 @@ end)
 -----------------------------------------------------------
 now(function()
     require('mini.statusline').setup()
+
+    vim.cmd("highlight clear MiniStatuslineFilename")
+    vim.cmd("highlight MiniStatuslineFilename guibg=#222222")
 end)
 
 -----------------------------------------------------------

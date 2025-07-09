@@ -1,16 +1,16 @@
-local now, later = MiniDeps.now, MiniDeps.later
+local later, add = MiniDeps.later, MiniDeps.add
 
 -----------------------------------------------------------
 -- Pairs
 -----------------------------------------------------------
-now(function()
-    require('mini.completion').setup({
-        mappings = {
-            scroll_up = '<C-p>',
-            scroll_down = '<C-n>'
-        }
-    })
-end)
+-- now(function()
+--     require('mini.completion').setup({
+--         mappings = {
+--             scroll_up = '<C-p>',
+--             scroll_down = '<C-n>'
+--         }
+--     })
+-- end)
 
 -----------------------------------------------------------
 -- Pairs
@@ -29,11 +29,21 @@ end)
 -----------------------------------------------------------
 -- Snippets
 -----------------------------------------------------------
+-- later(function()
+--     local gen_loader = require('mini.snippets').gen_loader
+--     require('mini.snippets').setup({
+--         snippets = {
+--             gen_loader.from_file('~/.config/nvim/snippets/global.json')
+--         }
+--     })
+-- end)
+
+-----------------------------------------------------------
+-- Grug FAR
+-----------------------------------------------------------
 later(function()
-    local gen_loader = require('mini.snippets').gen_loader
-    require('mini.snippets').setup({
-        snippets = {
-            gen_loader.from_file('~/.config/nvim/snippets/global.json')
-        }
+    add({
+        source = 'MagicDuck/grug-far.nvim'
     })
+    require('grug-far').setup()
 end)

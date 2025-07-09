@@ -9,6 +9,7 @@ now(function()
         depends = {
             'mason-org/mason.nvim',
             'mason-org/mason-lspconfig.nvim',
+            'saghen/blink.cmp'
         }
     })
     require("mason").setup({
@@ -19,6 +20,39 @@ now(function()
     })
     require("mason-lspconfig").setup({
         automatic_enable = true
+    })
+end)
+
+-----------------------------------------------------------
+-- Blink
+-----------------------------------------------------------
+local function build_blink(params)
+  vim.notify('Building blink.cmp', vim.log.levels.INFO)
+  local obj = vim.system({ 'cargo', 'build', '--release' }, { cwd = params.path }):wait()
+  if obj.code == 0 then
+    vim.notify('Building blink.cmp done', vim.log.levels.INFO)
+  else
+    vim.notify('Building blink.cmp failed', vim.log.levels.ERROR)
+  end
+end
+
+later(function()
+    add({
+      source = 'Saghen/blink.cmp',
+      hooks = {
+        post_install = build_blink,
+        post_checkout = build_blink,
+      },
+    })
+    require("blink.cmp").setup({
+        fuzzy = { implementation = "prefer_rust" },
+        keymap = {
+            preset = "default",
+
+            ["<C-k>"] = { "select_prev", "fallback" },
+            ["<C-j>"] = { "select_next", "fallback" },
+            ['<CR>'] = { 'accept', 'fallback' },
+        }
     })
 end)
 
@@ -46,6 +80,7 @@ now(function()
             typescript = { "prettierd", "prettier", stop_after_first = true},
             typescriptreact = { "prettierd", "prettier", stop_after_first = true},
             cs = { "csharpier" },
+            go = { "gofmt" },
         },
         formatters = {
             csharpier = function()
